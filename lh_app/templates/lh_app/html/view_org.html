@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Search</title>
+  <style>
+    .table{
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+  </style>
+  
+
+</head>
+<body>
+  {% include 'lh_app/common/header.html'%}
+  
+  <h1 style="text-align: center;">Search Organization</h1>
+  
+  {% for o in org_list%}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SrNo.</th>
+        <th scope="col">Organization name</th>
+        <th scope="col">Organization Id</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{ o.org_name }}</td>
+        <td>{{o.org_id}}</td>
+        <td>{{o.city}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+
+  
+  {%endfor%}
+  
+</body>
+</html>

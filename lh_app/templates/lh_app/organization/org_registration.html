@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Parent Registration Form</title>
+    {%include 'lh_app/common/common_css.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+    <script>
+        $(document).ready(function () {
+            $("#userid").change(function () {
+                // alert("Provider Id already Exists")
+                // alert(($(this).val()));
+                var account_id = $(this).val();
+                
+                $.ajax({
+                    url: "/checkId/",
+                    data: {
+                        'user_id': account_id
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        
+                        if (data.status) {
+                            alert("Id already Exists");
+                            
+                            document.getElementById("userid").value = ""
+                        }
+                    }
+                });
+            })
+        }) 
+    </script>
+</head>
+<style>
+    body {
+        background-image: url('/static/lh_app/images/rg.jpg');
+        /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.8);
+        /* Optionally, add a background color to make the form more readable */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 10px rgba(0, 0, 0, 0.2);
+        /* Optionally, add a box shadow for a subtle effect */
+    }
+</style>
+
+<body style="margin: 0px;">
+    {% include 'lh_app/common/header.html'%}
+    <div style="width: 100%;height: 60px;background-color: cornflowerblue;">
+        <h2 style="text-align: center;margin: 10px; margin: bottom 10px; color: black;">Registration Form</h2>
+    </div>
+    <div>
+
+        <div class="container mt-5">
+            {%if messages %}
+      {%for m in messages%}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{m}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {%endfor%}
+      {%endif%}
+            <form class="col-md-6 col-sm-12 mx-auto contact-form" method="POST" action="/org_registration/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="idField">ID:</label>
+                    <input type="text" class="form-control" name="id" id="userid" placeholder="Enter ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordField">Password:</label>
+                    <input type="password" class="form-control" name="password" id="passwordField"
+                        placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="orgNameField">Organization Name:</label>
+                    <input type="text" class="form-control" name="org_name" id="orgNameField"
+                        placeholder="Enter Organization Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailField">Email:</label>
+                    <input type="email" class="form-control" name="email" id="emailField" placeholder="Enter Email"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneField">Phone:</label>
+                    <input type="tel" class="form-control" name="phone" id='phone_number' placeholder="Enter Phone"
+                        required maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label for="cityField">City (Optional):</label>
+                    <select class="form-control" name="city" id="cityField">
+                        <option value="delhi">Select your city</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="lucknow">Lucknow</option>
+                        <option value="gorakhpur">Gorakhpur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ownerNameField">Owner Name:</label>
+                    <input type="text" class="form-control" name="owner_name" id="ownerNameField"
+                        placeholder="Enter Owner Name" required oninput="validateInput(event)">
+                </div>
+                <div class="form-group">
+                    <label for="addressField">Address:</label>
+                    <textarea class="form-control" name="address" id="addressField" rows="3" placeholder="Enter Address"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="aboutOrgField">About Organization:</label>
+                    <textarea class="form-control" name="about_org" id="aboutOrgField" rows="3"
+                        placeholder="Tell us about your organization"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+       
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateInput(event) {
+                const input = event.target.value;
+                const regex = /^[a-zA-Z ]*$/; // Regular expression to match only characters
+                if (!regex.test(input)) {
+                    // If input contains anything other than characters, remove them
+                    event.target.value = input.replace(/[^a-zA-Z]/g, '');
+                    //alert("only aplhabets allowed")
+                    Swal.fire("Only Alphabets are allowed");
+                }
+            }
+        </script>
+        <script>
+
+            document.getElementById('phone_number').addEventListener('keydown', function (event) {
+                // Allow only digits and backspace/delete keys
+                if (!(event.key === 'Backspace' || event.key === 'Delete' || /\d/.test(event.key) || event.key === 'Tab')) {
+                    Swal.fire("only digits")
+                    event.preventDefault();
+                }
+            });
+
+        </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllFeedBack</title>
+  {% include 'lh_app/common/common_css.html'%}
+</head>
+
+<body>
+  {% include 'lh_app/common/header.html'%}
+  <h1 style="text-align: center;color: blueviolet;">User Reviews</h1>
+  <div class="row">
+    {% for f in feedback_list %}
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Name: {{ f.name }}</h5>
+
+
+        </div>
+        <ul class="list-group list-group-flush">
+
+          <li class="list-group-item">Remark: {{ f.remarks }}</li>
+          <li class="list-group-item">Rating: {{ f.ratings }}/5</li>
+
+
+        </ul>
+
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% include 'lh_app/common/footer.html'%}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

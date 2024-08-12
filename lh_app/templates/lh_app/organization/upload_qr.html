@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload QR Form</title>
+    {%include 'lh_app/common/common_css.html'%}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            margin: 50px auto;
+            width: 50%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+        
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    {%include 'lh_app/organization/org_header.html'%}
+    <div class="container">
+        <h2 style="text-align: center;">Upload QR Form</h2>
+        <form action="/upload_qr/" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+            <div class="form-group">
+                <label for="qrPic">Select QR Code Image:</label>
+                <label class="custom-file-upload">
+                    Choose File<input type="file" id="qrPic" name="qrPic" accept="image/*" required>
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admission Form</title>
+{% include 'lh_app/common/common_css.html'%}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="file"] {
+        margin-top: 5px;
+    }
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    #qr_code_section {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    {% include 'lh_app/parent/parent_header.html'%}
+<div class="container">
+    {%if messages %}
+    {%for m in messages%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{m}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+    {%endif%}
+
+    <h2>Admission Form</h2>
+    <form  method="post" action="/take_admission_final/"  enctype="multipart/form-data" id="admissionForm">
+        {%csrf_token%}
+        <input name="activity_id" value="{{id}}">
+
+        <input name="org_id"  value="{{org_id}}">
+        <label for="student_name">StudentName</label>
+        <input type="text" id="student_name" name="student_name" required>
+
+        <label for="mother_name">MotherName</label>
+        <input type="text" id="mother_name" name="mother_name" required>
+
+        <label for="father_name">FatherName</label>
+        <input type="text" id="father_name" name="father_name" required>
+
+        <label for="phone">PhoneNumber</label>
+        <input type="number" id="phone" name="phone" required>
+
+        <label for="alternative_phone">AlternativePhoneNumber</label>
+        <input type="number" id="alternative_phone" name="alternative_phone">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="dob">DOB</label>
+        <input type="date" id="dob" name="dob" placeholder="number" required>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+
+        <label>Gender</label><br>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male" class="me-4 mb-2">Male</label>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female" class="me-4 mb-2">Female</label>
+        <input type="radio" id="other" name="gender" value="other" required>
+        <label for="other" class="mb-2">Other</label><br>
+        
+
+        <label for="school_name">School Name</label>
+        <input type="text" id="school_name" name="school_name" required>
+
+        <label for="admission_mode">Admission Mode</label><br>
+        <input type="radio" id="online" name="admission_mode" value="online" required>
+        <label for="online">Online</label><br>
+        <input type="radio" id="offline" name="admission_mode" value="offline" required>
+        <label for="offline">Offline</label><br>
+
+        <div id="qr_code_section">
+            <label for="qr_code">Upload Payment Screenshot</label>
+            <input type="file" id="qr_code" name="payment_screenshot" accept="image/*" >
+        </div>
+
+        <label for="fees">Fees</label>
+        <input type="number" id="fees" name="fees" required>
+
+
+        <br>
+
+        <label for="student_photo" class="mt-3">StudentPhoto</label>
+        <br>
+        <input type="file" id="student_photo" name="student_photo" accept="image/*" required>
+
+        <button  type="submit"  class="mt-4">submit</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var admissionMode = document.getElementsByName("admission_mode");
+        var qrCodeSection = document.getElementById("qr_code_section");
+
+        admissionMode.forEach(function(radio) {
+            radio.addEventListener("change", function() {
+                if (this.value === "online") {
+                    qrCodeSection.style.display = "block";
+                } else {
+                    qrCodeSection.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

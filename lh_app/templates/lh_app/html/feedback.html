@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  {%include 'lh_app/common/common_css.html'%}
+  <!-- Bootstrap CSS -->
+  <style>
+    /* Custom CSS */
+    .red-button {
+      background-color: red;
+      color: white;
+    }
+
+    .blue-button {
+      background-color: blue;
+      color: white;
+    }
+  </style>
+</head>
+{% include 'lh_app/common/header.html'%}
+<style>
+  /* body {
+    background-image: url('/static/lh_app/images/bgfeed.jpg'); */
+    /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  } */
+
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Optionally, add a background color to make the form more readable */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Optionally, add a box shadow for a subtle effect */
+  }
+
+  .red-button {
+    background-color: red;
+    color: white;
+  }
+
+  .blue-button {
+    background-color: blue;
+    color: white;
+  }
+</style>
+
+<body>
+ 
+
+
+  </div>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      
+      <div class="col-md-6">
+        {%if messages %}
+      {%for m in messages%}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{m}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {%endfor%}
+      {%endif%}
+      <h1>Feedback Form</h1>
+        <form method="post" action="/feedback/">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="feedback">Feedback</label>
+            <textarea class="form-control" name="feedback" id="feedback" rows="3"
+              placeholder="Enter your feedback"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label><br>
+            <span>
+              <input type="radio" id="rating1" name="rating" value="😡">
+              <label for="rating1">😡</label>
+            </span>
+            <span>
+              <input type="radio" id="rating2" name="rating" value="😐">
+              <label for="rating2">😐</label>
+            </span>
+            <span>
+              <input type="radio" id="rating3" name="rating" value="😊">
+              <label for="rating3">😊</label>
+            </span>
+          </div>
+          <button type="reset" class="btn red-button">Reset</button>
+          <button type="submit" class="btn blue-button">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  {% include 'lh_app/common/footer.html'%}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+
+</html>

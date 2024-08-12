@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Document</title>
+    {% include 'lh_app/common/common_css.html'%}
+    <style>
+      table,td,th{
+          border: 5px solid red;
+      }
+      table{
+          width: 200px;
+          border-collapse: collapse;
+      }
+      th{
+          background-color: rgba(0, 0, 139, 0.269);
+          width: 200px;
+      }
+      tr:hover{
+          background-color: chocolate;
+      }
+
+  </style>
+</head>
+<body>
+  {% include 'lh_app/organization/org_header.html'%}
+
+  <h1 style="color: black; text-align: center;">Inbox</h1>
+    <table class="table">
+        <thead tyle="margin: 10px;">
+          <tr>
+            
+            <th scope="col">sender_id</th>
+            <th scope="col">subject</th>
+            <th scope="col">message</th>
+          </tr>
+        </thead>
+
+
+        {% for m in message_key%}
+        
+        <th scope="col">{{m.sender_id}}</th>
+
+
+        <th scope="col">{{m.subject}}</th>
+
+        <th scope="col">{{m.message}}</th>
+        {%endfor%}
+      </table>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

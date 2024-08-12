@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Activity</title>
+    {% include 'lh_app/common/common_css.html'%}
+</head>
+
+<body>
+  {% include 'lh_app/parent/parent_header.html'%}
+
+    <h1 style="text-align: center;color: blueviolet;">AllOrganizers</h1>
+    <div class="row">
+      <img src="/media/{{org_key.qr_pic}}" style="width:200px;height: 200px;">
+      {% for o in activity_list %}
+      <div class="card mb-3 mx-2" style="width: 18rem;">
+        <div class="card-header">
+          <b> Organization_id: {{ o.org_id }}</b>
+        </div>
+        <ul class="list-group list-group-flush">
+          <!-- <li class="list-group-item"></li> -->
+          <li class="list-group-item">activity_name: {{ o.activity_name }}</li>
+          <li class="list-group-item">charge: {{ o.charge }}</li>
+          <li class="list-group-item">duration: {{ o.duration }}</li>
+          <li class="list-group-item">contact: {{ o.contact }}</li>
+        </ul>
+        <a href="/take_admission/{{o.id}}/{{o.org_id}}">take admission</a>  
+
+        
+        </div>
+      {% endfor %}
+    </div>
+     
+  
+  
+  
+  
+     {% include 'lh_app/common/footer.html'%} 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  </body>
+  
+  </html>

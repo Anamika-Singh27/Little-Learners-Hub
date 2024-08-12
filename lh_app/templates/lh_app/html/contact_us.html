@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+
+    {%include 'lh_app/common/common_css.html'%}
+</head>
+
+<body>
+    {% include 'lh_app/common/header.html'%}
+
+
+
+    <div class="container mt-5">
+
+        <div class="row">
+
+            <div class="col-6 p-0">
+
+                <img src="{%static 'lh_app/images/MCA-mob.jpg'%}" alt="image is loading" class="w-100">
+
+
+            </div>
+            <div class="col-6 text-center " style="background-color: cornflowerblue; color: black;">
+                {%if messages %}
+                {%for m in messages%}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{m}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {%endfor%}
+                {%endif%}
+                <h1> Feel free to contact Us </h1>
+                <form method="post" action="/contact/">
+                    {% csrf_token %}
+                    <div class="input-group mt-4">
+
+                        <label for="" class="input-group-text"> Name <i class='fas fa-address-book'></i></label>
+                        <input type="text" name="name" placeholder="Enter your name " class="form-control">
+                    </div>
+
+                    <div class="input-group mt-4">
+                        <label for="" class="input-group-text">Email <i class="fa fa-envelope"></i></label>
+                        <input type="email" name="email" placeholder="Enter your email " class="form-control">
+
+
+                    </div>
+
+                    <div class="input-group mt-4">
+                        <label for="" class="input-group-text">Number <i class="fas fa-phone"></i></label>
+                        <input type="number" name="number" placeholder="Enter your number " class="form-control">
+
+
+                    </div>
+                    <div class="input-group mt-4">
+                        <label for="" class="input-group-text">Enter your query <i class="fas fa-comments"></i></label>
+
+                        <textarea class="form-control" name="question" id="query" rows="2"
+                            placeholder="Enter your query"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-50 mt-3 ">Submit</button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    </div>
+
+
+    </div>
+
+    </div>
+
+
+    </div>
+
+    {% include 'lh_app/common/footer.html'%}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

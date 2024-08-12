@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    {%include 'lh_app/common/common_css.html'%}
+</head>
+
+<body>
+  {% include 'lh_app/common/header.html'%}
+    <h1 style="text-align: center;">City Event</h1>
+    <div class="row">
+{% for e in event_key%}
+
+    <div class="col-3">
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{e.event_pic}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{e.event_name}}</h5>
+      </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Venue:{{e.event_venue}}</li>
+      <li class="list-group-item">Date:{{e.event_date}}</li>
+      <li class="list-group-item">{{e.event_description}}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+</div>
+  
+
+
+  
+
+{%endfor%}
+</div>
+{% include 'lh_app/common/footer.html'%}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

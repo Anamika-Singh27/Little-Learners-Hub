@@ -1,0 +1,81 @@
+<style>
+.nav-link{
+    /* color: white; */
+    /* font-size: 20px; */
+    /* font-family: monospace; */
+} 
+.dropdown-item{
+       /* color: white; */
+    /* font-size: 20px; */
+    
+
+}  
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{'/'}}">Little Hub</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{'/'}}">
+  
+  
+              <i class="fas fa-home"></i>
+  
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{'/about/'}}">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{'/contact/'}}">Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{'/feedback/'}}">Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{'/events/'}}">Latest Updates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{'/all_organizer/'}}">All Organizers</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{'/parent_login/'}}">Parent</a></li>
+              <li><a class="dropdown-item" href="{{'/org_login/'}}">Organization</a></li>
+
+              
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Registration
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{'/parent_registration/'}}">Parent</a></li>
+              <li><a class="dropdown-item" href="{{'/org_registration/'}}">Organization</a></li>
+              
+              
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Search
+            </a>
+            <ul class="dropdown-menu">
+              
+              <li><a class="dropdown-item" href="{{'/search_org/'}}">Organization</a></li>
+
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </div>
+    </div>
+  </nav>

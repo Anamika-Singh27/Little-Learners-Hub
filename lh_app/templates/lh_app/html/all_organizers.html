@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllOrganizers</title>
+  {% include 'lh_app/common/common_css.html'%}
+</head>
+
+<body>
+  {% include 'lh_app/common/header.html'%}
+  <h1 style="text-align: center;color: blueviolet;">AllOrganizers</h1>
+  <div class="row">
+    {% for o in org_list %}
+    <div class="card mb-3 mx-2" style="width: 18rem;">
+      <div class="card-header">
+        <b> Organization_id: {{ o.org_id }}</b>
+      </div>
+      <ul class="list-group list-group-flush">
+        <!-- <li class="list-group-item"></li> -->
+        <li class="list-group-item">Org_name: {{ o.org_name }}</li>
+        <li class="list-group-item">Email: {{ o.email }}</li>
+        <li class="list-group-item">City: {{ o.city }}</li>
+      </ul>
+      
+      <a href="/views_activity/{{o.org_id}}">view activity</a>  
+
+      </div>
+    {% endfor %}
+  </div>
+  {% include 'lh_app/common/footer.html'%}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
